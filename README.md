@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# hci-test-ui
 
-## Getting Started
+A demo web app for the HCI take home tech assessment.
 
-First, run the development server:
+[![Azure Static Web Apps CI/CD](https://github.com/tabman83/hci-test-ui/actions/workflows/azure-static-web-apps-icy-river-017fa1c03.yml/badge.svg?branch=master)](https://github.com/tabman83/hci-test-ui/actions/workflows/azure-static-web-apps-icy-river-017fa1c03.yml)
+
+
+## Running the app
+
+Clone this repo, then run the following:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploying the app
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The app is deployed by a CI/CD pipeline provided by Github Actions and it's served at the following URL:
+https://icy-river-017fa1c03.4.azurestaticapps.net/
 
-## Learn More
+## Creating the app
 
-To learn more about Next.js, take a look at the following resources:
+The following prerequisites have been installed:
+- Node.js v. 20.11 LTS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The app has been bootstrapped with Next.js:
+- https://react.dev/learn/start-a-new-react-project
+- https://learn.microsoft.com/en-us/azure/static-web-apps/deploy-nextjs-hybrid

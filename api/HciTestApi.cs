@@ -8,28 +8,34 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace api
+namespace api;
+
+public class HciTestApi
 {
-    public static class HciTestApi
+    private readonly IDataService _dataService;
+
+    public HciTestApi(IDataService dataService)
     {
-        [FunctionName("HciTestApi")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
-        {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+        _dataService = dataService;
+    }
 
-            string name = req.Query["name"];
+    [FunctionName("HciTestApi")]
+    public static async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+        ILogger log)
+    {
+        log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+        string name = req.Query["name"];
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+        string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+        dynamic data = JsonConvert.DeserializeObject(requestBody);
+        name = name ?? data?.name;
 
-            return new OkObjectResult(responseMessage);
-        }
+        string responseMessage = string.IsNullOrEmpty(name)
+            ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+            : $"Hello, {name}. This HTTP triggered function executed successfully.";
+
+        return new OkObjectResult(responseMessage);
     }
 }

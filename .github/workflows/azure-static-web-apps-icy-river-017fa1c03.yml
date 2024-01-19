@@ -21,13 +21,16 @@ jobs:
           lfs: false
     
       - name: Restore Test Project Dependencies
-        run: dotnet restore "/api/Tests/Api.Unit.Tests/Api.Unit.Tests.csproj"
+        run: dotnet restore
+        working-directory: api/Tests/Api.Unit.Tests
       
       - name: Build Test Project
-        run: dotnet build "/api/Tests/Api.Unit.Tests/Api.Unit.Tests.csproj" --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore
+        working-directory: api/Tests/Api.Unit.Tests
       
       - name: Run Tests
-        run: dotnet test "/api/Tests/Api.Unit.Tests/Api.Unit.Tests.csproj" --configuration Release --no-build --verbosity normal
+        run: dotnet test --configuration Release --no-build --verbosity normal
+        working-directory: api/Tests/Api.Unit.Tests
 
       - name: Build And Deploy
         id: builddeploy

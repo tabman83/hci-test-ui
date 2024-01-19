@@ -19,6 +19,19 @@ jobs:
         with:
           submodules: true
           lfs: false
+    
+      - name: Restore Test Project Dependencies
+        run: dotnet restore
+        working-directory: api/Tests/Api.Unit.Tests
+      
+      - name: Build Test Project
+        run: dotnet build --configuration Release --no-restore
+        working-directory: api/Tests/Api.Unit.Tests
+      
+      - name: Run Tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
+        working-directory: api/Tests/Api.Unit.Tests
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1

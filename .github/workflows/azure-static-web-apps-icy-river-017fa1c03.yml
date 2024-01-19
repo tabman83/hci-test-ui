@@ -19,20 +19,15 @@ jobs:
         with:
           submodules: true
           lfs: false
-
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
     
       - name: Restore Test Project Dependencies
-        run: dotnet restore "/api/Tests/Api.Unit.Tests.csproj"
+        run: dotnet restore "/api/Tests/Api.Unit.Tests/Api.Unit.Tests.csproj"
       
       - name: Build Test Project
-        run: dotnet build "/api/Tests/Api.Unit.Tests.csproj" --configuration Release --no-restore
+        run: dotnet build "/api/Tests/Api.Unit.Tests/Api.Unit.Tests.csproj" --configuration Release --no-restore
       
       - name: Run Tests
-        run: dotnet test "/api/Tests/Api.Unit.Tests.csproj" --configuration Release --no-build --verbosity normal
+        run: dotnet test "/api/Tests/Api.Unit.Tests/Api.Unit.Tests.csproj" --configuration Release --no-build --verbosity normal
 
       - name: Build And Deploy
         id: builddeploy

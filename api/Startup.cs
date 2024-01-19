@@ -1,9 +1,10 @@
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace api;
+namespace Api;
 
 public class Startup : FunctionsStartup
 {

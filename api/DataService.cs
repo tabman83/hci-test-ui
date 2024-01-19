@@ -1,7 +1,7 @@
 using System.Data.Common;
 using System.Threading.Tasks;
 
-namespace api;
+namespace Api;
 
 public interface IDataService
 {

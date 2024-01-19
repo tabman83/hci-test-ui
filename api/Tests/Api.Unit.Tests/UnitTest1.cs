@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace Api.Unit.Tests;
 
 public class UnitTest1

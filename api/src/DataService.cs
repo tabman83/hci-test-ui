@@ -11,7 +11,7 @@ namespace Api;
 
 public interface IDataService
 {
-    Task<ResultOrError<Patient, Exception>> FindPatientAsync(string firstNameOrLastName,
+    Task<ResultOrError<Patient, Exception>> FindPatientAsync(string name,
         CancellationToken cancellationToken = default);
     Task<ResultOrError<IEnumerable<Visit>, Exception>> GetVisitsAsync(Guid patientId,
         CancellationToken cancellationToken = default);
@@ -26,16 +26,16 @@ public class DataService : IDataService
         _dbConnection = dbConnection;
     }
 
-    public async Task<ResultOrError<Patient, Exception>> FindPatientAsync(string firstNameOrLastName, CancellationToken cancellationToken = default)
+    public async Task<ResultOrError<Patient, Exception>> FindPatientAsync(string name, CancellationToken cancellationToken = default)
     {
         try
         {
             await _dbConnection.OpenAsync(cancellationToken);
             await using var command = _dbConnection.CreateCommand();
             command.CommandText =
-                "SELECT * FROM Patients WHERE FirstName LIKE @SearchPattern OR LastName LIKE @SearchPattern";
+                "SELECT * FROM Patients WHERE Name LIKE @SearchPattern";
             command.Parameters.Add(new SqlParameter("@SearchPattern", SqlDbType.NVarChar)
-                { Value = $"{firstNameOrLastName}%" });
+                { Value = $"{name}%" });
             await using var reader = await command.ExecuteReaderAsync(cancellationToken);
             if (await reader.ReadAsync(cancellationToken))
             {

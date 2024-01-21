@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Api.Models;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -72,7 +70,7 @@ public class FindPatientFunctionTests
 
         // Assert
         using var scope = new AssertionScope();
-        result.Should().BeOfType<InternalServerErrorResult>();
+        result.Should().BeOfType<ObjectResult>();
         _dataServiceMock.Verify();
     }
 }

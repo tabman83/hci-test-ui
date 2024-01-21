@@ -37,8 +37,9 @@ public class DataService : IDataService
             command.Parameters.Add(new SqlParameter("@SearchPattern", SqlDbType.NVarChar)
                 { Value = $"{name}%" });
             await using var reader = await command.ExecuteReaderAsync(cancellationToken);
-            if (await reader.ReadAsync(cancellationToken))
+            if (reader.HasRows)
             {
+                await reader.ReadAsync(cancellationToken);
                 var result = Patient.FromReader(reader);
                 return ResultOrError<Patient, Exception>.WithSuccess(result);
             }

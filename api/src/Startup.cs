@@ -1,9 +1,10 @@
-using System;
 using System.Data.Common;
 using System.Data.SqlClient;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+[assembly: FunctionsStartup(typeof(Api.Startup))]
 
 namespace Api;
 

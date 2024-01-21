@@ -21,14 +21,14 @@ public class FindPatientFunction
 
     [FunctionName("FindPatient")]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "patients/find/{firstNameOrLastName}")] HttpRequest req,
-        string firstNameOrLastName,
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "patients/find/{name}")] HttpRequest req,
+        string name,
         ILogger log,
         CancellationToken cancellationToken = default)
     {
         log.LogInformation("FindPatient function processed a request.");
         
-        var result = await _dataService.FindPatientAsync(firstNameOrLastName, cancellationToken);
+        var result = await _dataService.FindPatientAsync(name, cancellationToken);
 
         return result switch
         {

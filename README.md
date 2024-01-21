@@ -1,18 +1,28 @@
-# hci-test-ui
+# hci-test-app
 
 A demo web app for the HCI take home tech assessment.
 
 [![Azure Static Web Apps CI/CD](https://github.com/tabman83/hci-test-ui/actions/workflows/azure-static-web-apps-icy-river-017fa1c03.yml/badge.svg?branch=master)](https://github.com/tabman83/hci-test-ui/actions/workflows/azure-static-web-apps-icy-river-017fa1c03.yml)
 
-## Running the app
+## Local dev
 
-Clone this repo, then run the following:
+Clone this repo, then run the following to install the prerequisites:
 
 ```bash
-npm install
-npm run dev
+npm install -g @azure/static-web-apps-cli
 ```
 
+Login to Azure:
+```bash
+swa login
+```
+
+Then run the app:
+```bash
+swa start
+```
+
+and follow the on screen instructions. 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Deploying the app

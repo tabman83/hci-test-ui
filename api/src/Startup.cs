@@ -10,7 +10,7 @@ public class Startup : FunctionsStartup
 {
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        builder.Services.AddSingleton<DbConnection>((s) =>
+        builder.Services.AddSingleton<DbConnection>(_ =>
         {
             // Connection string should be stored securely, e.g., in Azure Key Vault or App Settings
             var connectionString = Environment.GetEnvironmentVariable("SqlConnectionString");

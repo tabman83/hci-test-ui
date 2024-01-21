@@ -34,7 +34,7 @@ public class FindPatientFunction
         {
             { IsSuccess: true } => new OkObjectResult(result.Result),
             { IsSuccess: false, Error: InvalidOperationException } => new NotFoundResult(),
-            _ => new InternalServerErrorResult()
+            _ => new ObjectResult(result.Error.Message) { StatusCode = 500 }
         };
     }
 }

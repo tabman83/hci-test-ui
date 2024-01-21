@@ -34,7 +34,7 @@ public class GetVisitsFunction
         return result switch
         {
             { IsSuccess: true } => new OkObjectResult(result.Result),
-            _ => new InternalServerErrorResult()
+            _ => new ObjectResult(result.Error.Message) { StatusCode = 500 }
         };
     }
 }

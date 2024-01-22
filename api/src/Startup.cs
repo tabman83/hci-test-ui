@@ -1,8 +1,10 @@
-using System;
 using System.Data.Common;
 using System.Data.SqlClient;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+[assembly: FunctionsStartup(typeof(Api.Startup))]
 
 namespace Api;
 
@@ -10,10 +12,9 @@ public class Startup : FunctionsStartup
 {
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        builder.Services.AddSingleton<DbConnection>((s) =>
+        builder.Services.AddSingleton<DbConnection>(_ =>
         {
-            // Connection string should be stored securely, e.g., in Azure Key Vault or App Settings
-            var connectionString = Environment.GetEnvironmentVariable("SqlConnectionString");
+            var connectionString = builder.GetContext().Configuration.GetValue<string>("SqlConnectionString");
             return new SqlConnection(connectionString);
         });
 

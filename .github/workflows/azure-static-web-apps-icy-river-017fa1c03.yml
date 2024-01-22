@@ -28,9 +28,15 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         working-directory: api/Tests/Api.Unit.Tests
       
-      - name: Run Tests
+      - name: Run API Tests
         run: dotnet test --configuration Release --no-build --verbosity normal
         working-directory: api/Tests/Api.Unit.Tests
+
+      - name: Run UI Tests
+        run: |
+          # Build and test the project
+          npm install
+          npm run test --if-present
 
       - name: Build And Deploy
         id: builddeploy

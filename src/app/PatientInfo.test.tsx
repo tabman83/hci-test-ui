@@ -1,22 +1,25 @@
-// PatientInfo.test.tsx
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import {expect, jest, test} from '@jest/globals';
-import '@testing-library/jest-dom';
-
 import { PatientInfo } from './PatientInfo';
+import '@testing-library/jest-dom';
 
 describe('PatientInfo Component', () => {
     const mockOnGetVisits = jest.fn();
+    const patientId = '123';
+    const patientName = 'John Doe';
+    const patientAge = 30;
 
-    it('should display the patient name', () => {
-        render(<PatientInfo name="John Doe" id="123" age={32} onGetVisits={mockOnGetVisits} />);
-        expect(screen.getByText('John Doe - 32 years old')).toBeInTheDocument();
+    beforeEach(() => {
+        render(<PatientInfo id={patientId} name={patientName} age={patientAge} onGetVisits={mockOnGetVisits} />);
     });
 
-    it('should call onGetVisits when the button is clicked', () => {
-        render(<PatientInfo name="John Doe" id="123" age={41} onGetVisits={mockOnGetVisits} />);
+    
+    it('should display the patient name and age', () => {
+        expect(screen.getByText(`${patientName} - ${patientAge} years old`)).toBeInTheDocument();
+    });
+
+    it('should call onGetVisits with the patientId when the button is clicked', () => {
         fireEvent.click(screen.getByText('Get Visits'));
-        expect(mockOnGetVisits).toHaveBeenCalledWith('123');
+        expect(mockOnGetVisits).toHaveBeenCalledWith(patientId);
     });
 });

@@ -67,7 +67,7 @@ const Page: React.FC = () => {
                   </p>
                   <SearchBar onSearch={handleSearch} />
                   {searchPerformed && !patient && <p className="text-center">{message}</p>}
-                  {patient && <PatientInfo name={patient.name} patientId={patient.id} onGetVisits={handleGetVisits} />}
+                  {patient && <PatientInfo name={patient.name} id={patient.id} age={patient.age} onGetVisits={handleGetVisits} />}
                   {visitSearchPerformed && visits.length === 0 && <p className="text-center">{message}</p>}
                   {visits.length > 0 && <VisitsList visits={visits} />}
               </Col>

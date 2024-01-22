@@ -33,7 +33,10 @@ jobs:
         working-directory: api/Tests/Api.Unit.Tests
 
       - name: Run UI Tests
-        run: npm test
+        run: |
+          # Build and test the project
+          npm install
+          npm run test --if-present
 
       - name: Build And Deploy
         id: builddeploy

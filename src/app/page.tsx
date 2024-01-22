@@ -8,8 +8,9 @@ import axios from 'axios';
 import './page.css'; // Import your custom CSS
 
 interface Patient {
+    id: string;
     name: string;
-    patientId: string;
+    age: number;
 }
 
 interface Visit {
@@ -66,7 +67,7 @@ const Page: React.FC = () => {
                   </p>
                   <SearchBar onSearch={handleSearch} />
                   {searchPerformed && !patient && <p className="text-center">{message}</p>}
-                  {patient && <PatientInfo name={patient.name} patientId={patient.patientId} onGetVisits={handleGetVisits} />}
+                  {patient && <PatientInfo name={patient.name} patientId={patient.id} onGetVisits={handleGetVisits} />}
                   {visitSearchPerformed && visits.length === 0 && <p className="text-center">{message}</p>}
                   {visits.length > 0 && <VisitsList visits={visits} />}
               </Col>

@@ -3,16 +3,17 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 interface PatientInfoProps {
+    id: string;
     name: string;
-    patientId: string;
+    age: number;
     onGetVisits: (patientId: string) => void;
 }
 
-export const PatientInfo: React.FC<PatientInfoProps> = ({ name, patientId, onGetVisits }) => {
+export const PatientInfo: React.FC<PatientInfoProps> = ({ id, name, age, onGetVisits }) => {
     return (
         <div>
-            <h2>{name}</h2>
-            <Button onClick={() => onGetVisits(patientId)}>Get Visits</Button>
+            <h2>{name} - {age} years old</h2>
+            <Button onClick={() => onGetVisits(id)}>Get Visits</Button>
         </div>
     );
 };

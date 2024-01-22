@@ -8,6 +8,6 @@ public record Patient(Guid Id, string Name, ushort Age)
     public static Patient FromReader(DbDataReader reader) => new(
         reader.GetGuid(0),
         reader.GetString(1),
-        (ushort)reader.GetInt16(3)
+        reader.GetByte(2)
     );
 }
